@@ -5,10 +5,10 @@ import os
 from email.mime.text import MIMEText
 from datetime import datetime
 
-URL = os.environ.get("URL")
-EMAIL_REMETENTE = os.environ.get("EMAIL_REMETENTE")
-SENHA_APP = os.environ.get("SENHA_APP")
-EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO")
+URL = os.environ.get("https://www.pontagrossa.pr.gov.br/concursos/")
+EMAIL_REMETENTE = os.environ.get("hugopurger@gmail.com")
+SENHA_APP = os.environ.get("aoaz hpdm liwh ajyr")
+EMAIL_DESTINO = os.environ.get("whainerlima@outlook.com.br")
 ARQUIVO_HASH = "ultimo_hash.txt"
 
 def obter_conteudo(url):
