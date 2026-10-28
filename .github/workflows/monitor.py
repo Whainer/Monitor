@@ -5,7 +5,10 @@ import os
 from email.mime.text import MIMEText
 from datetime import datetime
 ##https://www.pontagrossa.pr.gov.br/concursos/##
+
+
 URL = os.environ.get("https://arede.info/Ultimas")
+print(URL)
 EMAIL_REMETENTE = os.environ.get("hugopurger@gmail.com")
 SENHA_APP = os.environ.get("aoaz hpdm liwh ajyr")
 EMAIL_DESTINO = os.environ.get("whainerlima@outlook.com.br")
