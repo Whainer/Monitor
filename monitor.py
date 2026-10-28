@@ -1,7 +1,7 @@
 import requests
 import hashlib
 import smtplib
-import os
+import os 
 from email.mime.text import MIMEText
 from datetime import datetime
 ##https://www.pontagrossa.pr.gov.br/concursos/##
