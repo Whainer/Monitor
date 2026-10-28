@@ -6,13 +6,10 @@ from email.mime.text import MIMEText
 from datetime import datetime
 ##https://www.pontagrossa.pr.gov.br/concursos/##
 
-
-URL = ("https://arede.info/Ultimas")
-print(URL)
 EMAIL_REMETENTE = os.environ.get("EMAIL_REMETENTE")
 SENHA_APP = os.environ.get("SENHA_APP")
 EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO") 
-url = URL
+URL = os.environ.get("URL")
 ARQUIVO_HASH = "ultimo_hash.txt"
 
 def obter_conteudo(url):
