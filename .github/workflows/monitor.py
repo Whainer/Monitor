@@ -11,7 +11,7 @@ SENHA_APP = os.environ.get("SENHA_APP")
 EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO") 
 URL = os.environ.get("URL")
 ARQUIVO_HASH = "ultimo_hash.txt"
-
+ 
 def obter_conteudo(url):
     headers = {"User-Agent": "Mozilla/5.0"}
     resposta = requests.get(url, headers=headers, timeout=20)
