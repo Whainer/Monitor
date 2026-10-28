@@ -25,5 +25,5 @@ jobs:
           EMAIL_REMETENTE: ${{ secrets.EMAIL_REMETENTE }}
           SENHA_APP: ${{ secrets.SENHA_APP }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
-          URL: ${{ secrets.URL }}
+          ###URL: ${{ secrets.URL }}
         run: python monitor.py
