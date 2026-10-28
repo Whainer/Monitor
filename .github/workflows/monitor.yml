@@ -30,7 +30,7 @@ jobs:
           use-mamba: false
 
       - name: Install dependencies
-        run: |
+        run:
           conda env update --file environment.yml --name base
 
       - name: Install dependencies
