@@ -9,9 +9,9 @@ from datetime import datetime
 
 URL = os.environ.get("https://arede.info/Ultimas")
 print(URL)
-EMAIL_REMETENTE = os.environ.get("hugopurger@gmail.com")
-SENHA_APP = os.environ.get("aoaz hpdm liwh ajyr")
-EMAIL_DESTINO = os.environ.get("whainerlima@outlook.com.br")
+EMAIL_REMETENTE = os.environ.get("EMAIL_REMETENTE")
+SENHA_APP = os.environ.get("SENHA_APP")
+EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO")
 ARQUIVO_HASH = "ultimo_hash.txt"
 
 def obter_conteudo(url):
