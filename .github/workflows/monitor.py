@@ -12,11 +12,43 @@ EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO")
 URL = os.environ.get("URL")
 ARQUIVO_HASH = "ultimo_hash.txt"
  
+
+import time
+from requests.exceptions import RequestException
+
 def obter_conteudo(url):
-    headers = {"User-Agent": "Mozilla/5.0"}
-    resposta = requests.get(url, headers=headers, timeout=20)
-    resposta.raise_for_status()
-    return resposta.text
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; PageMonitor/1.0)"
+    }
+
+    ultimo_erro = None
+
+    for tentativa in range(1, 4):
+        try:
+            print(f"Acessando página: tentativa {tentativa}/3")
+
+            resposta = requests.get(
+                url,
+                headers=headers,
+                timeout=(20, 45)
+            )
+
+            resposta.raise_for_status()
+            print("Página acessada com sucesso.")
+            return resposta.text
+
+        except RequestException as erro:
+            ultimo_erro = erro
+            print(f"Falha na tentativa {tentativa}: {erro}")
+
+            if tentativa < 3:
+                time.sleep(10 * tentativa)
+
+    raise RuntimeError(
+        f"Não foi possível acessar a página após 3 tentativas: "
+        f"{ultimo_erro}"
+    ) from ultimo_erro
+
 
 def calcular_hash(conteudo):
     return hashlib.sha256(conteudo.encode("utf-8")).hexdigest()
@@ -43,11 +75,16 @@ def enviar_email(assunto, mensagem):
         servidor.send_message(msg)
 
 def main():
+    def main():
     hash_anterior = carregar_hash()
-    print(URL)
-    conteudo = obter_conteudo(URL)
-    hash_atual = calcular_hash(conteudo)
 
+    try:
+        conteudo = obter_conteudo(URL)
+    except RuntimeError as erro:
+        print(f"Monitoramento não concluído: {erro}")
+        return
+
+    hash_atual = calcular_hash(conteudo)
     if hash_anterior is None:
         print("Primeira execução. Salvando hash inicial.")
         salvar_hash(hash_atual)
