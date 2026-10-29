@@ -44,6 +44,7 @@ def enviar_email(assunto, mensagem):
 
 def main():
     hash_anterior = carregar_hash()
+    print(URL)
     conteudo = obter_conteudo(URL)
     hash_atual = calcular_hash(conteudo)
 
