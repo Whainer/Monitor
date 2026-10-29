@@ -26,7 +26,7 @@ def obter_conteudo(url):
     for tentativa in range(1, 4):
         try:
             print(f"Acessando página: tentativa {tentativa}/3")
-
+            print(f"URL consultada: {url}")
             resposta = requests.get(
                 url,
                 headers=headers,
