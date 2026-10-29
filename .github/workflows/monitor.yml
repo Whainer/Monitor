@@ -26,4 +26,4 @@ jobs:
           SENHA_APP: ${{ secrets.SENHA_APP }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
           URL: ${{ secrets.URL }}
-        run: python monitor.py
+        run: python .github/workflows/monitor.py
