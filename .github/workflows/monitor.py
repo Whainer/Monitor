@@ -75,7 +75,6 @@ def enviar_email(assunto, mensagem):
         servidor.send_message(msg)
 
 def main():
-    def main():
     hash_anterior = carregar_hash()
 
     try:
