@@ -73,6 +73,7 @@ def enviar_email(assunto, mensagem):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as servidor:
         servidor.login(EMAIL_REMETENTE, SENHA_APP)
         servidor.send_message(msg)
+        servidor.send_message(str(conteúdo))
 
 def main():
     hash_anterior = carregar_hash()
