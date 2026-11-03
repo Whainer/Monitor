@@ -35,6 +35,9 @@ jobs:
           SENHA_APP: ${{ secrets.SENHA_APP }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
           URL: ${{ secrets.URL }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
+          PROXY_USER: ${{ secrets.PROXY_USER }}
+          PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
