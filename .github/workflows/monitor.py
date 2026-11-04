@@ -30,11 +30,15 @@ def obter_conteudo(url):
         try:
             print(f"Acessando página: tentativa {tentativa}/3")
             print(f"URL consultada: {url}")
-            resposta = requests.get(
-                url,
-                headers=headers,
-                timeout=(20, 45)
-            )
+            resposta = requests.get(url,headers={
+        "User-Agent": (
+            "Mozilla/5.0 (Linux; Android 10) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/130.0.0.0 Mobile Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,"
+                 "application/xml;q=0.9,*/*;q=0.8",
+    },timeout=(30, 60),proxies=configurar_proxies(),)
 
             resposta.raise_for_status()
             print("Página acessada com sucesso.")
