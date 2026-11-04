@@ -11,6 +11,7 @@ SENHA_APP = os.environ.get("SENHA_APP")
 EMAIL_DESTINO = os.environ.get("EMAIL_DESTINO") 
 URL = (os.environ.get("URL") or "").strip()
 PROXY_URL = os.environ.get("PROXY_URL")
+PROXY_PORT = os.environ.get("PROXY_PORT")
 PROXY_USER = os.environ.get("PROXY_USER")
 PROXY_PASSWORD = os.environ.get("PROXY_PASSWORD")
 ARQUIVO_HASH = "ultimo_hash.txt"
