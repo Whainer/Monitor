@@ -19,7 +19,13 @@ ARQUIVO_HASH = "ultimo_hash.txt"
 
 import time
 from requests.exceptions import RequestException
-
+def configurar_proxies():
+    if not (PROXY_URL and PROXY_PORT):
+        return None
+    auth = f"{PROXY_USER}:{PROXY_PASSWORD}@" if PROXY_USER else ""
+    proxy = f"http://{auth}{PROXY_URL}:{PROXY_PORT}"
+    return {"http": proxy, "https": proxy}
+ 
 def obter_conteudo(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; PageMonitor/1.0)"
@@ -81,7 +87,6 @@ def enviar_email(assunto, mensagem):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as servidor:
         servidor.login(EMAIL_REMETENTE, SENHA_APP)
         servidor.send_message(msg)
-        servidor.send_message(str(conteudo))
 
 def main():
     hash_anterior = carregar_hash()
