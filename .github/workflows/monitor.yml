@@ -36,6 +36,7 @@ jobs:
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
           URL: ${{ secrets.URL }}
           PROXY_URL: ${{ secrets.PROXY_URL }}
+          PROXY_PORT: ${{ secrets.PROXY_PORT }}
           PROXY_USER: ${{ secrets.PROXY_USER }}
           PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
         run: |
