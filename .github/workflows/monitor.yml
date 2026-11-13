@@ -2,7 +2,7 @@ name: Monitorar Página
 
 on:
   schedule:
-    - cron: '7 * * * *'   # a cada hora, no minuto 7
+    - cron: '7,37 * * * *'   # tenta iniciar duas vezes por hora; fica na fila se já houver uma rodando
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 355
 
     steps:
       - name: Checkout
@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Monitor
+      - name: Monitor em loop
         env:
           EMAIL_REMETENTE: ${{ secrets.EMAIL_REMETENTE }}
           SENHA_APP: ${{ secrets.SENHA_APP }}
@@ -43,10 +43,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          python .github/workflows/monitor.py || echo "Execução falhou"
+          fim=$((SECONDS + 20400))   # ~5h40
+          while [ $SECONDS -lt $fim ]; do
+            python .github/workflows/monitor.py || echo "Execução falhou, tentando de novo no próximo ciclo"
 
-          git add ultimo_hash.txt
-          if ! git diff --cached --quiet; then
-            git commit -m "Atualiza histórico do monitor"
-            git pull --rebase && git push || echo "Push falhou"
-          fi
+            git add ultimo_hash.txt
+            if ! git diff --cached --quiet; then
+              git commit -m "Atualiza histórico do monitor"
+              git pull --rebase && git push || echo "Push falhou, tentando no próximo ciclo"
+            fi
+
+            sleep 3600
+          done
